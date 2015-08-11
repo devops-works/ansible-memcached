@@ -1,0 +1,23 @@
+- name: Installs memcached
+  apt: name=memcached state=latest
+
+- name: Installs PECL extension
+  apt: name=php5-memcache state=installed
+  when: memcached_install_php_extension
+  notify: Restart php5-fpm
+
+- name: Deploys datadog integration
+  template:
+    src: datadog_mcache.yaml.j2
+    dest: /etc/dd-agent/conf.d/mcache.yaml
+  when: datadog_api_key is defined and datadog_api_key
+  notify: Restart datadog-agent
+  tags:
+    - datadog
+
+- name: Push memcached config
+  template:
+    src: "../templates/memcached.conf.j2"
+    dest: /etc/memcached.conf
+    mode: 0644
+  notify: Restart mecached

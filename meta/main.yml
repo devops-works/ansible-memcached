@@ -1,0 +1,20 @@
+---
+
+dependencies: []
+
+galaxy_info:
+  author: Michel Blanc
+  company: ACME Corp
+  description: ansible-memcached role
+  license: MIT
+  min_ansible_version: 1.6
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  categories:
+    - database
+
+dependencies:
+  - role: ansible-datadog-agent
+    src: https://github.com/leucos/ansible-datadog-agent.git
