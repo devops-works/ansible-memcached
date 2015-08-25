@@ -3,6 +3,7 @@ memcached_max_client_sequential_requests: 20
 memcached_daemon: true
 memcached_fail_on_memory_exhausted: false
 memcached_install_php_extension: true
+# Set memcached_listen to false to listen to all interfaces
 memcached_listen: 127.0.0.1
 memcached_lock_memory: false
 memcached_logfile: /var/log/memcached.log
