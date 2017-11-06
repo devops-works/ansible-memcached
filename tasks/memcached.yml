@@ -1,14 +1,7 @@
 - name: Installs memcached
-  apt: name=memcached state=latest
-
-- name: Deploys datadog integration
-  template:
-    src: datadog_mcache.yaml.j2
-    dest: /etc/dd-agent/conf.d/mcache.yaml
-  when: datadog_api_key is defined and datadog_enabled
-  notify: Restart datadog-agent
-  tags:
-    - datadog
+  apt:
+    name: memcached
+    state: present
 
 - name: Push memcached config
   template:
